@@ -10,16 +10,14 @@ import reducers from '../reducers';
 
 class BudgetDisplay extends Component {
 
-  onBudgetChange() {
-    console.log('hi');
-  }
+
 
   promptForBudget() {
     AlertIOS.prompt(
       'Enter your budget for the Month',
       null,
       (text) => {
-        this.onBudgetChange(); 
+        console.log(this.props.enterBudget(parseFloat(text)));
       }
       //this.props.enterBudget(parseFloat(text))
     );
@@ -30,7 +28,7 @@ class BudgetDisplay extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={this.promptForBudget} style={styles.budgetButton}>
+        <TouchableOpacity onPress={this.promptForBudget.bind(this)} style={styles.budgetButton}>
           <Text style={styles.budgetButtonText}>
             Please enter your budget for the month
           </Text>
